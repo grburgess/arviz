@@ -53,8 +53,10 @@ def plot_energy(data, kind='kde', bfmi=True, figsize=None, legend=True, fill_alp
     energy = convert_to_dataset(data, group='sample_stats').energy.values
 
     if ax is None:
-        _, ax = plt.subplots(figsize=figsize)
-
+        fig, ax = plt.subplots(figsize=figsize)
+    else:
+        fig = ax.get_figure()
+        
     if fill_kwargs is None:
         fill_kwargs = {}
 
@@ -98,4 +100,4 @@ def plot_energy(data, kind='kde', bfmi=True, figsize=None, legend=True, fill_alp
     if legend:
         ax.legend()
 
-    return ax
+    return fig
