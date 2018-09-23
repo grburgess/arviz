@@ -43,7 +43,7 @@ def plot_autocorr(data, var_names=None, max_lag=100, combined=False, figsize=Non
 
     figsize, textsize, linewidth, _ = _scale_fig_size(figsize, textsize, rows, cols)
 
-    _, axes = _create_axes_grid(length_plotters, rows, cols, figsize=figsize,
+    fig, axes = _create_axes_grid(length_plotters, rows, cols, figsize=figsize,
                                 squeeze=False, sharex=True, sharey=True)
 
     axes = np.atleast_2d(axes)  # in case of only 1 plot
@@ -66,4 +66,4 @@ def plot_autocorr(data, var_names=None, max_lag=100, combined=False, figsize=Non
         axes[0, 0].set_xlim(0, max_lag)
         axes[0, 0].set_ylim(-1, 1)
 
-    return axes
+    return fig
