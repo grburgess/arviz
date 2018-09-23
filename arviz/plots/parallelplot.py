@@ -62,8 +62,12 @@ def plot_parallel(data, var_names=None, coords=None, figsize=None, textsize=None
     figsize, textsize, _, _ = _scale_fig_size(figsize, textsize, 1, 1)
 
     if ax is None:
-        _, ax = plt.subplots(figsize=figsize)
+        fig, ax = plt.subplots(figsize=figsize)
 
+    else:
+
+        fig = ax.get_figure()
+        
     ax.plot(_posterior[:, ~diverging_mask], color=colornd, alpha=shadend)
 
     if np.any(diverging_mask):
@@ -79,4 +83,4 @@ def plot_parallel(data, var_names=None, coords=None, figsize=None, textsize=None
             ax.plot([], color=colord, label='divergent')
         ax.legend(fontsize=textsize)
 
-    return ax
+    return fig
